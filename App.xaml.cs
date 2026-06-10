@@ -21,13 +21,12 @@ namespace PhoneBookWpf
 
         private void ConfigureServices(IServiceCollection services)
         {
-            // 1. Регистрация контекста базы данных
-            // ОБЯЗАТЕЛЬНО ПРОВЕРЬТЕ, что имя сервера и базы данных здесь ваши!
+            
             string connectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=PhoneBookDB_grohotovde_2307g;Integrated Security=True;TrustServerCertificate=True";
             services.AddDbContext<PhoneBookContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            // 2. Регистрация сервисов и ViewModel
+           
             services.AddSingleton<IDialogService, DialogService>();
             services.AddSingleton<MainViewModel>();
         }
@@ -36,7 +35,7 @@ namespace PhoneBookWpf
         {
             base.OnStartup(e);
 
-            // 3. Создание и отображение главного окна
+            
             var mainWindow = new MainWindow
             {
                 DataContext = _serviceProvider.GetRequiredService<MainViewModel>()
